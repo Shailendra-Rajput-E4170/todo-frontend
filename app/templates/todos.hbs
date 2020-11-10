@@ -1,0 +1,47 @@
+<div class="container bg-warning">
+  <h3 class="display-4 pt-3" >Todo List</h3>
+  
+  <div class="row">
+    <div class="col-sm-8">
+        <div class="mb-2">
+        {{input type="text" value=todoTitle class="form-control" placeholder="What needs to be done?"}}
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <button class="btn btn-primary btn-block mb-2" {{action 'createTodo'}} disabled={{isDisabled}}>+Add</button>
+    </div>
+  </div>
+
+  <div class="row pt-3">
+    <div class="col-sm">
+      <ul class="list-group">
+        {{#each model as |todo|}}
+          
+           <li class="list-group-item {{if todo.completed 'completed'}}">
+              <input type='checkbox' checked={{todo.completed}} onChange={{action 'updateTodo' todo}}/> 
+              {{todo.title}}
+              <button class="btn btn-light float-right" {{action 'deleteTodo' todo}}>Delete
+                  <span class="glyphicon glyphicon-remove"></span>
+              </button>
+           </li>
+           
+
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+  
+  <div class="row pt-3">
+    <ul class="nav nav-pills nav-fill">
+    <li class="nav-item">
+      <a class="nav-link active" href="#">All todos</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Pending</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Completed</a>
+    </li>
+    </ul>
+  </div>
+</div>
